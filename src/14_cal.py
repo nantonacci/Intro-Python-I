@@ -31,20 +31,22 @@ import sys
 import calendar
 from datetime import datetime
 
-x = datetime.now()
-print(x.year)
 
-tc= calendar.TextCalendar(firstweekday=0)
-print(tc.formatmonth(2020,5))
 
-# def program(themonth, theyear):
-#   if input == '':
-#     x = datetime.now()
-#      print(x.month)
-#   if 1 arg, assume month:
-# x = datetime.now()
-# print(f'{themonth} {x.year}')
-#   if 2 args, assume month and year:
-#     print(calendar.month(theyear, themonth))
-#   else:
-#     print expected format
+if len(sys.argv) == 1:
+  x = datetime.now()
+  tc= calendar.TextCalendar(firstweekday=0)
+  print(tc.formatmonth(x.year,x.month))
+  exit()
+if int(sys.argv[1])>0 and len(sys.argv) == 2:
+  x = datetime.now()
+  tc= calendar.TextCalendar(firstweekday=0)
+  print(tc.formatmonth(x.year,int(sys.argv[1])))
+  exit()
+if int(sys.argv[1])>0 and int(sys.argv[2])>0:
+  tc= calendar.TextCalendar(firstweekday=0)
+  print(tc.formatmonth(int(sys.argv[2]),int(sys.argv[1])))
+  exit()
+else:
+  print('please provide the month followed by the date')
+  exit()
